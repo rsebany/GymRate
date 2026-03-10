@@ -7,6 +7,7 @@ import Members from './pages/Members'
 import MemberDetail from './pages/MemberDetail'
 import Subscriptions from './pages/Subscriptions'
 import Payments from './pages/Payments'
+import Coaches from './pages/Coaches'
 
 function PrivateRoute({ children, adminOnly }) {
   const { user, loading, isAdmin } = useAuth()
@@ -20,11 +21,66 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<AuthPage />} />
-      <Route path="/dashboard" element={<PrivateRoute><Layout><Dashboard /></Layout></PrivateRoute>} />
-      <Route path="/members" element={<PrivateRoute><Layout><Members /></Layout></PrivateRoute>} />
-      <Route path="/members/:id" element={<PrivateRoute><Layout><MemberDetail /></Layout></PrivateRoute>} />
-      <Route path="/subscriptions" element={<PrivateRoute adminOnly><Layout><Subscriptions /></Layout></PrivateRoute>} />
-      <Route path="/payments" element={<PrivateRoute adminOnly><Layout><Payments /></Layout></PrivateRoute>} />
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Layout page="dashboard">
+              <Dashboard />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/members"
+        element={
+          <PrivateRoute>
+            <Layout page="members">
+              <Members />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/members/:id"
+        element={
+          <PrivateRoute>
+            <Layout page="members">
+              <MemberDetail />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/subscriptions"
+        element={
+          <PrivateRoute adminOnly>
+            <Layout page="subscriptions">
+              <Subscriptions />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/payments"
+        element={
+          <PrivateRoute adminOnly>
+            <Layout page="payments">
+              <Payments />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/coaches"
+        element={
+          <PrivateRoute adminOnly>
+            <Layout page="coaches">
+              <Coaches />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
     </Routes>
   )
 }

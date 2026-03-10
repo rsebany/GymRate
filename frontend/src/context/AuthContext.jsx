@@ -23,7 +23,13 @@ export function AuthProvider({ children }) {
   }
 
   const register = async (formData) => {
-    await api.post('/auth/register', formData)
+    await api.post('/auth/register', {
+      nom: formData.nom,
+      prenom: formData.prenom,
+      email: formData.email,
+      telephone: formData.telephone,
+      password: formData.motDePasse
+    })
   }
 
   const logout = () => {
